@@ -65,7 +65,7 @@ func TestSetServiceAccountLocal(t *testing.T) {
 	}
 
 	for i, input := range inputs {
-		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			tf := cmdtesting.NewTestFactory().WithNamespace("test")
 			defer tf.Cleanup()
 
@@ -317,7 +317,7 @@ func TestSetServiceAccountRemote(t *testing.T) {
 		},
 	}
 	for i, input := range inputs {
-		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			tf := cmdtesting.NewTestFactory().WithNamespace("test")
 			defer tf.Cleanup()
 

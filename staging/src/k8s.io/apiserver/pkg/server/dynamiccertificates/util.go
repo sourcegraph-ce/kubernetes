@@ -43,7 +43,7 @@ func GetHumanCertDetail(certificate *x509.Certificate) string {
 			continue
 		}
 
-		usages = append(usages, fmt.Sprintf("%d", curr))
+		usages = append(usages, strconv.Itoa(curr))
 	}
 
 	validServingNames := []string{}

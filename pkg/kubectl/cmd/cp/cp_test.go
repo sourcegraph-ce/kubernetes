@@ -242,7 +242,7 @@ func TestIsDestRelative(t *testing.T) {
 	}
 
 	for i, test := range tests {
-		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			if test.relative != isDestRelative(test.base, test.dest) {
 				t.Errorf("unexpected result for: base %q, dest %q", test.base, test.dest)
 			}

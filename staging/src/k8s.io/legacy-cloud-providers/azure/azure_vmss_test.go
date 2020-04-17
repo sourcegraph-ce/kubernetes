@@ -73,7 +73,7 @@ func setTestVirtualMachineCloud(ss *Cloud, scaleSetName, zone string, faultDomai
 		ID := fmt.Sprintf("/subscriptions/script/resourceGroups/rg/providers/Microsoft.Compute/virtualMachineScaleSets/%s/virtualMachines/%d", scaleSetName, i)
 		interfaceID := fmt.Sprintf("/subscriptions/script/resourceGroups/rg/providers/Microsoft.Compute/virtualMachineScaleSets/%s/virtualMachines/%d/networkInterfaces/%s", scaleSetName, i, nodeName)
 		publicAddressID := fmt.Sprintf("/subscriptions/script/resourceGroups/rg/providers/Microsoft.Compute/virtualMachineScaleSets/%s/virtualMachines/%d/networkInterfaces/%s/ipConfigurations/ipconfig1/publicIPAddresses/%s", scaleSetName, i, nodeName, nodeName)
-		instanceID := fmt.Sprintf("%d", i)
+		instanceID := strconv.Itoa(i)
 		vmName := fmt.Sprintf("%s_%s", scaleSetName, instanceID)
 
 		// set vmss virtual machine.

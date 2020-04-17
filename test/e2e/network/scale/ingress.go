@@ -196,7 +196,7 @@ func (f *IngressScaleFramework) RunScaleTest() []error {
 		latencyQueue := make(chan time.Duration, numIngsToCreate)
 		start := time.Now()
 		for ; numIngsCreated < numIngsNeeded; numIngsCreated++ {
-			suffix := fmt.Sprintf("%d", numIngsCreated)
+			suffix := strconv.Itoa(numIngsCreated)
 			go func() {
 				defer ingWg.Done()
 
@@ -252,7 +252,7 @@ func (f *IngressScaleFramework) RunScaleTest() []error {
 	measureCreateUpdateFunc := func() {
 		f.Logger.Infof("Create one more ingress and wait for it to come up")
 		start := time.Now()
-		svcCreated, ingCreated, err := f.createScaleTestServiceIngress(fmt.Sprintf("%d", numIngsCreated), f.EnableTLS)
+		svcCreated, ingCreated, err := f.createScaleTestServiceIngress(strconv.Itoa(numIngsCreated), f.EnableTLS)
 		numIngsCreated = numIngsCreated + 1
 		f.ScaleTestSvcs = append(f.ScaleTestSvcs, svcCreated)
 		f.ScaleTestIngs = append(f.ScaleTestIngs, ingCreated)

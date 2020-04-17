@@ -221,7 +221,7 @@ func BenchmarkDelayingQueue_AddAfter(b *testing.B) {
 
 	// Add items
 	for n := 0; n < b.N; n++ {
-		data := fmt.Sprintf("%d", n)
+		data := strconv.Itoa(n)
 		q.AddAfter(data, time.Duration(rand.Int63n(int64(10*time.Minute))))
 	}
 

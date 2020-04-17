@@ -423,7 +423,7 @@ func hostPortRangesToString(ranges []policy.HostPortRange) string {
 		strRanges := []string{}
 		for _, r := range ranges {
 			if r.Min == r.Max {
-				strRanges = append(strRanges, fmt.Sprintf("%d", r.Min))
+				strRanges = append(strRanges, strconv.Itoa(r.Min))
 			} else {
 				strRanges = append(strRanges, fmt.Sprintf("%d-%d", r.Min, r.Max))
 			}

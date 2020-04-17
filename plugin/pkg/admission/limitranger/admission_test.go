@@ -771,11 +771,11 @@ func newMockClientForTest(limitRanges []corev1.LimitRange) *fake.Clientset {
 	mockClient.AddReactor("list", "limitranges", func(action core.Action) (bool, runtime.Object, error) {
 		limitRangeList := &corev1.LimitRangeList{
 			ListMeta: metav1.ListMeta{
-				ResourceVersion: fmt.Sprintf("%d", len(limitRanges)),
+				ResourceVersion: strconv.Itoa(len(limitRanges)),
 			},
 		}
 		for index, value := range limitRanges {
-			value.ResourceVersion = fmt.Sprintf("%d", index)
+			value.ResourceVersion = strconv.Itoa(index)
 			limitRangeList.Items = append(limitRangeList.Items, value)
 		}
 		return true, limitRangeList, nil

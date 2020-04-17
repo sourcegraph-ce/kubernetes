@@ -283,7 +283,7 @@ func (w *wrapTransportPersist) RoundTrip(req *http.Request) (*http.Response, err
 		}
 	}
 	roundTrips++
-	w.config["roundTrips"] = fmt.Sprintf("%d", roundTrips)
+	w.config["roundTrips"] = strconv.Itoa(roundTrips)
 	if err := w.persister.Persist(w.config); err != nil {
 		return nil, err
 	}

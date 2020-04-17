@@ -1203,7 +1203,7 @@ func getTestSecurityGroup(az *Cloud, services ...v1.Service) *network.SecurityGr
 					Name: to.StringPtr(ruleName),
 					SecurityRulePropertiesFormat: &network.SecurityRulePropertiesFormat{
 						SourceAddressPrefix:  to.StringPtr(src),
-						DestinationPortRange: to.StringPtr(fmt.Sprintf("%d", port.Port)),
+						DestinationPortRange: to.StringPtr(strconv.Itoa(port.Port)),
 					},
 				})
 			}
@@ -1435,7 +1435,7 @@ func securityRuleMatches(serviceSourceRange string, servicePort v1.ServicePort, 
 		return fmt.Errorf("Rule does not contain source %s", serviceSourceRange)
 	}
 
-	if !contains(*rulePorts, fmt.Sprintf("%d", servicePort.Port)) {
+	if !contains(*rulePorts, strconv.Itoa(servicePort.Port)) {
 		return fmt.Errorf("Rule does not contain port %d", servicePort.Port)
 	}
 

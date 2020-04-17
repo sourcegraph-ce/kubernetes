@@ -409,7 +409,7 @@ func TestReflectorWatchListPageSize(t *testing.T) {
 			}
 			pods := make([]v1.Pod, 10)
 			for i := 0; i < 10; i++ {
-				pods[i] = v1.Pod{ObjectMeta: metav1.ObjectMeta{Name: fmt.Sprintf("pod-%d", i), ResourceVersion: fmt.Sprintf("%d", i)}}
+				pods[i] = v1.Pod{ObjectMeta: metav1.ObjectMeta{Name: fmt.Sprintf("pod-%d", i), ResourceVersion: strconv.Itoa(i)}}
 			}
 			switch options.Continue {
 			case "":
@@ -454,7 +454,7 @@ func TestReflectorResyncWithResourceVersion(t *testing.T) {
 			listCallRVs = append(listCallRVs, options.ResourceVersion)
 			pods := make([]v1.Pod, 8)
 			for i := 0; i < 8; i++ {
-				pods[i] = v1.Pod{ObjectMeta: metav1.ObjectMeta{Name: fmt.Sprintf("pod-%d", i), ResourceVersion: fmt.Sprintf("%d", i)}}
+				pods[i] = v1.Pod{ObjectMeta: metav1.ObjectMeta{Name: fmt.Sprintf("pod-%d", i), ResourceVersion: strconv.Itoa(i)}}
 			}
 			switch options.ResourceVersion {
 			case "0":
@@ -513,7 +513,7 @@ func TestReflectorExpiredExactResourceVersion(t *testing.T) {
 			listCallRVs = append(listCallRVs, options.ResourceVersion)
 			pods := make([]v1.Pod, 8)
 			for i := 0; i < 8; i++ {
-				pods[i] = v1.Pod{ObjectMeta: metav1.ObjectMeta{Name: fmt.Sprintf("pod-%d", i), ResourceVersion: fmt.Sprintf("%d", i)}}
+				pods[i] = v1.Pod{ObjectMeta: metav1.ObjectMeta{Name: fmt.Sprintf("pod-%d", i), ResourceVersion: strconv.Itoa(i)}}
 			}
 			switch options.ResourceVersion {
 			case "0":
@@ -570,7 +570,7 @@ func TestReflectorFullListIfExpired(t *testing.T) {
 			listCallRVs = append(listCallRVs, options.ResourceVersion)
 			pods := make([]v1.Pod, 8)
 			for i := 0; i < 8; i++ {
-				pods[i] = v1.Pod{ObjectMeta: metav1.ObjectMeta{Name: fmt.Sprintf("pod-%d", i), ResourceVersion: fmt.Sprintf("%d", i)}}
+				pods[i] = v1.Pod{ObjectMeta: metav1.ObjectMeta{Name: fmt.Sprintf("pod-%d", i), ResourceVersion: strconv.Itoa(i)}}
 			}
 			switch options.ResourceVersion {
 			case "0":

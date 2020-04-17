@@ -205,7 +205,7 @@ func ValidateDiscoveryKubeConfigPath(discoveryFile string, fldPath *field.Path) 
 func ValidateBootstrapTokens(bts []kubeadm.BootstrapToken, fldPath *field.Path) field.ErrorList {
 	allErrs := field.ErrorList{}
 	for i, bt := range bts {
-		btPath := fldPath.Child(fmt.Sprintf("%d", i))
+		btPath := fldPath.Child(strconv.Itoa(i))
 		allErrs = append(allErrs, ValidateToken(bt.Token.String(), btPath.Child(kubeadmcmdoptions.TokenStr))...)
 		allErrs = append(allErrs, ValidateTokenUsages(bt.Usages, btPath.Child(kubeadmcmdoptions.TokenUsages))...)
 		allErrs = append(allErrs, ValidateTokenGroups(bt.Usages, bt.Groups, btPath.Child(kubeadmcmdoptions.TokenGroups))...)

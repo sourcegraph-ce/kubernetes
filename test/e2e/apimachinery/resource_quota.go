@@ -144,8 +144,8 @@ var _ = SIGDescribe("ResourceQuota", func() {
 			found = len(secrets.Items)
 			return false, nil
 		})
-		defaultSecrets := fmt.Sprintf("%d", found)
-		hardSecrets := fmt.Sprintf("%d", found+1)
+		defaultSecrets := strconv.Itoa(found)
+		hardSecrets := strconv.Itoa(found + 1)
 
 		ginkgo.By("Counting existing ResourceQuota")
 		c, err := countResourceQuota(f.ClientSet, f.Namespace.Name)
@@ -309,8 +309,8 @@ var _ = SIGDescribe("ResourceQuota", func() {
 			found = len(configmaps.Items)
 			return false, nil
 		})
-		defaultConfigMaps := fmt.Sprintf("%d", found)
-		hardConfigMaps := fmt.Sprintf("%d", found+1)
+		defaultConfigMaps := strconv.Itoa(found)
+		hardConfigMaps := strconv.Itoa(found + 1)
 
 		ginkgo.By("Counting existing ResourceQuota")
 		c, err := countResourceQuota(f.ClientSet, f.Namespace.Name)

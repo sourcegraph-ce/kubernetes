@@ -83,7 +83,7 @@ func ConstructHealthCheckFirewallForLBService(clusterID string, svc *v1.Service,
 	fw.Allowed = []*compute.FirewallAllowed{
 		{
 			IPProtocol: "tcp",
-			Ports:      []string{fmt.Sprintf("%d", healthCheckPort)},
+			Ports:      []string{strconv.Itoa(healthCheckPort)},
 		},
 	}
 	return &fw

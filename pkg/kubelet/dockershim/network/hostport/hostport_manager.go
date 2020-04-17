@@ -131,7 +131,7 @@ func (hm *hostportManager) Add(id string, podPortMapping *PodPortMapping, natInt
 		// This avoids any leaking iptables rule that takes up the same port
 		writeLine(natRules, "-I", string(kubeHostportsChain),
 			"-m", "comment", "--comment", fmt.Sprintf(`"%s hostport %d"`, podFullName, pm.HostPort),
-			"-m", protocol, "-p", protocol, "--dport", fmt.Sprintf("%d", pm.HostPort),
+			"-m", protocol, "-p", protocol, "--dport", strconv.Itoa(pm.HostPort),
 			"-j", string(chain),
 		)
 

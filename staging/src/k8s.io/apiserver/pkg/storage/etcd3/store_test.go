@@ -217,17 +217,17 @@ func TestGet(t *testing.T) {
 		name:        "current object resource version",
 		key:         key,
 		expectedOut: storedObj,
-		rv:          fmt.Sprintf("%d", currentRV),
+		rv:          strconv.Itoa(currentRV),
 	}, { // test get on existing item with minimum resource version set to latest pod resource version
 		name:        "latest resource version",
 		key:         key,
 		expectedOut: storedObj,
-		rv:          fmt.Sprintf("%d", lastUpdatedCurrentRV),
+		rv:          strconv.Itoa(lastUpdatedCurrentRV),
 	}, { // test get on existing item with minimum resource version set too high
 		name:             "too high resource version",
 		key:              key,
 		expectRVTooLarge: true,
-		rv:               fmt.Sprintf("%d", lastUpdatedCurrentRV+1),
+		rv:               strconv.Itoa(lastUpdatedCurrentRV+1),
 	}, { // test get on non-existing item with ignoreNotFound=false
 		name:              "get non-existing",
 		key:               "/non-existing",
@@ -365,12 +365,12 @@ func TestGetToList(t *testing.T) {
 		key:         key,
 		pred:        storage.Everything,
 		expectedOut: []*example.Pod{storedObj},
-		rv:          fmt.Sprintf("%d", currentRV),
+		rv:          strconv.Itoa(currentRV),
 	}, { // test GetToList on existing key with minimum resource version set too high
 		key:              key,
 		pred:             storage.Everything,
 		expectedOut:      []*example.Pod{storedObj},
-		rv:               fmt.Sprintf("%d", currentRV+1),
+		rv:               strconv.Itoa(currentRV+1),
 		expectRVTooLarge: true,
 	}, { // test GetToList on non-existing key
 		key:         "/non-existing",
@@ -933,7 +933,7 @@ func TestList(t *testing.T) {
 		{
 			name:             "rejects resource version set too high",
 			prefix:           "/",
-			rv:               fmt.Sprintf("%d", continueRV+1),
+			rv:               strconv.Itoa(continueRV+1),
 			expectRVTooLarge: true,
 		},
 		{

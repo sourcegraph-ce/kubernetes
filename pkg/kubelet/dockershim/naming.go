@@ -57,23 +57,23 @@ const (
 
 func makeSandboxName(s *runtimeapi.PodSandboxConfig) string {
 	return strings.Join([]string{
-		kubePrefix,                            // 0
-		sandboxContainerName,                  // 1
-		s.Metadata.Name,                       // 2
-		s.Metadata.Namespace,                  // 3
-		s.Metadata.Uid,                        // 4
-		fmt.Sprintf("%d", s.Metadata.Attempt), // 5
+		kubePrefix,                       // 0
+		sandboxContainerName,             // 1
+		s.Metadata.Name,                  // 2
+		s.Metadata.Namespace,             // 3
+		s.Metadata.Uid,                   // 4
+		strconv.Itoa(s.Metadata.Attempt), // 5
 	}, nameDelimiter)
 }
 
 func makeContainerName(s *runtimeapi.PodSandboxConfig, c *runtimeapi.ContainerConfig) string {
 	return strings.Join([]string{
-		kubePrefix,                            // 0
-		c.Metadata.Name,                       // 1:
-		s.Metadata.Name,                       // 2: sandbox name
-		s.Metadata.Namespace,                  // 3: sandbox namesapce
-		s.Metadata.Uid,                        // 4  sandbox uid
-		fmt.Sprintf("%d", c.Metadata.Attempt), // 5
+		kubePrefix,                       // 0
+		c.Metadata.Name,                  // 1:
+		s.Metadata.Name,                  // 2: sandbox name
+		s.Metadata.Namespace,             // 3: sandbox namesapce
+		s.Metadata.Uid,                   // 4  sandbox uid
+		strconv.Itoa(c.Metadata.Attempt), // 5
 	}, nameDelimiter)
 }
 

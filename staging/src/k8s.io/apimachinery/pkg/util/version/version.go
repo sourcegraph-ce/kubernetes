@@ -201,7 +201,7 @@ func (v *Version) String() string {
 		if i > 0 {
 			buffer.WriteString(".")
 		}
-		buffer.WriteString(fmt.Sprintf("%d", comp))
+		buffer.WriteString(strconv.Itoa(comp))
 	}
 	if v.preRelease != "" {
 		buffer.WriteString("-")

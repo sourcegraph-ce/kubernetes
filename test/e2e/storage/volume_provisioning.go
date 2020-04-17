@@ -335,7 +335,7 @@ var _ = utils.SIGDescribe("Dynamic Provisioning", func() {
 				betaTest = &test
 
 				ginkgo.By("Testing " + test.Name)
-				suffix := fmt.Sprintf("%d", i)
+				suffix := strconv.Itoa(i)
 				test.Client = c
 				test.Class = newStorageClass(test, ns, suffix)
 				test.Claim = e2epv.MakePersistentVolumeClaim(e2epv.PersistentVolumeClaimConfig{

@@ -60,7 +60,7 @@ func TestListSandboxes(t *testing.T) {
 	configs := []*runtimeapi.PodSandboxConfig{}
 	for i := 0; i < 3; i++ {
 		c := makeSandboxConfigWithLabelsAndAnnotations(fmt.Sprintf("%s%d", name, i),
-			fmt.Sprintf("%s%d", namespace, i), fmt.Sprintf("%d", i), 0,
+			fmt.Sprintf("%s%d", namespace, i), strconv.Itoa(i), 0,
 			map[string]string{"label": fmt.Sprintf("foo%d", i)},
 			map[string]string{"annotation": fmt.Sprintf("bar%d", i)},
 		)

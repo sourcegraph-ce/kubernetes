@@ -479,7 +479,7 @@ func (r *RollingUpdater) getOrCreateTargetControllerWithClient(controller *corev
 		if controller.Annotations == nil {
 			controller.Annotations = map[string]string{}
 		}
-		controller.Annotations[desiredReplicasAnnotation] = fmt.Sprintf("%d", valOrZero(controller.Spec.Replicas))
+		controller.Annotations[desiredReplicasAnnotation] = strconv.Itoa(valOrZero(controller.Spec.Replicas))
 		controller.Annotations[sourceIDAnnotation] = sourceID
 		controller.Spec.Replicas = utilpointer.Int32Ptr(0)
 		newRc, err := r.rcClient.ReplicationControllers(r.ns).Create(controller)

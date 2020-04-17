@@ -333,7 +333,7 @@ func (pf *PortForwarder) handleConnection(conn net.Conn, port ForwardedPort) {
 	// create error stream
 	headers := http.Header{}
 	headers.Set(v1.StreamType, v1.StreamTypeError)
-	headers.Set(v1.PortHeader, fmt.Sprintf("%d", port.Remote))
+	headers.Set(v1.PortHeader, strconv.Itoa(port.Remote))
 	headers.Set(v1.PortForwardRequestIDHeader, strconv.Itoa(requestID))
 	errorStream, err := pf.streamConn.CreateStream(headers)
 	if err != nil {

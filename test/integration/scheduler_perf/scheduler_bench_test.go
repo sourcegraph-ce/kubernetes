@@ -162,7 +162,7 @@ func BenchmarkSchedulingMigratedInTreePVs(b *testing.B) {
 	// plugin, so the results should be comparable with BenchmarkSchedulingInTreePVs.
 	driverKey := util.GetCSIAttachLimitKey(testCSIDriver)
 	allocatable := map[v1.ResourceName]string{
-		v1.ResourceName(driverKey): fmt.Sprintf("%d", util.DefaultMaxEBSVolumes),
+		v1.ResourceName(driverKey): strconv.Itoa(util.DefaultMaxEBSVolumes),
 	}
 	var count int32 = util.DefaultMaxEBSVolumes
 	csiAllocatable := map[string]*storagev1beta1.VolumeNodeResources{
@@ -202,7 +202,7 @@ func BenchmarkSchedulingCSIPVs(b *testing.B) {
 	// plugin, so the results should be comparable with BenchmarkSchedulingInTreePVs.
 	driverKey := util.GetCSIAttachLimitKey(testCSIDriver)
 	allocatable := map[v1.ResourceName]string{
-		v1.ResourceName(driverKey): fmt.Sprintf("%d", util.DefaultMaxEBSVolumes),
+		v1.ResourceName(driverKey): strconv.Itoa(util.DefaultMaxEBSVolumes),
 	}
 	var count int32 = util.DefaultMaxEBSVolumes
 	csiAllocatable := map[string]*storagev1beta1.VolumeNodeResources{

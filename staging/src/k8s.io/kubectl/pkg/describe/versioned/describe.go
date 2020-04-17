@@ -3387,7 +3387,7 @@ func describeHorizontalPodAutoscalerV2beta2(hpa *autoscalingv2beta2.HorizontalPo
 		}
 		minReplicas := "<unset>"
 		if hpa.Spec.MinReplicas != nil {
-			minReplicas = fmt.Sprintf("%d", *hpa.Spec.MinReplicas)
+			minReplicas = strconv.Itoa(*hpa.Spec.MinReplicas)
 		}
 		w.Write(LEVEL_0, "Min replicas:\t%s\n", minReplicas)
 		w.Write(LEVEL_0, "Max replicas:\t%d\n", hpa.Spec.MaxReplicas)
@@ -3427,14 +3427,14 @@ func describeHorizontalPodAutoscalerV1(hpa *autoscalingv1.HorizontalPodAutoscale
 			w.Write(LEVEL_0, "Target CPU utilization:\t%d%%\n", *hpa.Spec.TargetCPUUtilizationPercentage)
 			current := "<unknown>"
 			if hpa.Status.CurrentCPUUtilizationPercentage != nil {
-				current = fmt.Sprintf("%d", *hpa.Status.CurrentCPUUtilizationPercentage)
+				current = strconv.Itoa(*hpa.Status.CurrentCPUUtilizationPercentage)
 			}
 			w.Write(LEVEL_0, "Current CPU utilization:\t%s%%\n", current)
 		}
 
 		minReplicas := "<unset>"
 		if hpa.Spec.MinReplicas != nil {
-			minReplicas = fmt.Sprintf("%d", *hpa.Spec.MinReplicas)
+			minReplicas = strconv.Itoa(*hpa.Spec.MinReplicas)
 		}
 		w.Write(LEVEL_0, "Min replicas:\t%s\n", minReplicas)
 		w.Write(LEVEL_0, "Max replicas:\t%d\n", hpa.Spec.MaxReplicas)

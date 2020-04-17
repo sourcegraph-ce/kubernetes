@@ -35,7 +35,7 @@ func list(count int, rv string) *metainternalversion.List {
 	for i := 0; i < count; i++ {
 		list.Items = append(list.Items, &metav1beta1.PartialObjectMetadata{
 			ObjectMeta: metav1.ObjectMeta{
-				Name: fmt.Sprintf("%d", i),
+				Name: strconv.Itoa(i),
 			},
 		})
 	}
@@ -83,7 +83,7 @@ func (p *testPager) PagedList(ctx context.Context, options metav1.ListOptions) (
 		}
 		list.Items = append(list.Items, &metav1beta1.PartialObjectMetadata{
 			ObjectMeta: metav1.ObjectMeta{
-				Name: fmt.Sprintf("%d", p.index),
+				Name: strconv.Itoa(p.index),
 			},
 		})
 		p.remaining--

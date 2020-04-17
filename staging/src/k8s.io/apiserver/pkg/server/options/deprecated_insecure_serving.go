@@ -112,7 +112,7 @@ func (s *DeprecatedInsecureServingOptions) ApplyTo(c **server.DeprecatedInsecure
 		if s.ListenFunc != nil {
 			listen = s.ListenFunc
 		}
-		addr := net.JoinHostPort(s.BindAddress.String(), fmt.Sprintf("%d", s.BindPort))
+		addr := net.JoinHostPort(s.BindAddress.String(), strconv.Itoa(s.BindPort))
 		s.Listener, s.BindPort, err = listen(s.BindNetwork, addr)
 		if err != nil {
 			return fmt.Errorf("failed to create listener: %v", err)

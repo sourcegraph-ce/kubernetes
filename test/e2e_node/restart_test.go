@@ -106,12 +106,12 @@ var _ = framework.KubeDescribe("Restart [Serial] [Slow] [Disruptive] [NodeFeatur
 						}
 						// Make sure the container runtime is running, pid got from pid file may not be running.
 						pid = runtimePids[0]
-						if _, err := exec.Command("sudo", "ps", "-p", fmt.Sprintf("%d", pid)).CombinedOutput(); err != nil {
+						if _, err := exec.Command("sudo", "ps", "-p", strconv.Itoa(pid)).CombinedOutput(); err != nil {
 							return err
 						}
 						return nil
 					}, 1*time.Minute, 2*time.Second).Should(gomega.BeNil())
-					if stdout, err := exec.Command("sudo", "kill", fmt.Sprintf("%d", pid)).CombinedOutput(); err != nil {
+					if stdout, err := exec.Command("sudo", "kill", strconv.Itoa(pid)).CombinedOutput(); err != nil {
 						framework.Failf("Failed to kill container runtime (pid=%d): %v, stdout: %q", pid, err, string(stdout))
 					}
 					// Assume that container runtime will be restarted by systemd/supervisord etc.

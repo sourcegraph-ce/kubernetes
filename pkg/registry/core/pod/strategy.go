@@ -280,7 +280,7 @@ func ResourceLocation(getter ResourceGetter, rt http.RoundTripper, ctx context.C
 	if port == "" {
 		for i := range pod.Spec.Containers {
 			if len(pod.Spec.Containers[i].Ports) > 0 {
-				port = fmt.Sprintf("%d", pod.Spec.Containers[i].Ports[0].ContainerPort)
+				port = strconv.Itoa(pod.Spec.Containers[i].Ports[0].ContainerPort)
 				break
 			}
 		}

@@ -457,7 +457,7 @@ func getScaleSetVMInstanceID(machineName string) (string, error) {
 		return "", ErrorNotVmssInstance
 	}
 
-	return fmt.Sprintf("%d", instanceID), nil
+	return strconv.Itoa(instanceID), nil
 }
 
 // extractScaleSetNameByProviderID extracts the scaleset name by vmss node's ProviderID.

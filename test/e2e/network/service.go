@@ -1432,7 +1432,7 @@ var _ = SIGDescribe("Services", func() {
 			Lifecycle: &v1.Lifecycle{
 				PreStop: &v1.Handler{
 					Exec: &v1.ExecAction{
-						Command: []string{"/bin/sleep", fmt.Sprintf("%d", terminateSeconds)},
+						Command: []string{"/bin/sleep", strconv.Itoa(terminateSeconds)},
 					},
 				},
 			},

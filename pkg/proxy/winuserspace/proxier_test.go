@@ -43,7 +43,7 @@ const (
 )
 
 func joinHostPort(host string, port int) string {
-	return net.JoinHostPort(host, fmt.Sprintf("%d", port))
+	return net.JoinHostPort(host, strconv.Itoa(port))
 }
 
 func waitForClosedPortTCP(p *Proxier, proxyPort int) error {
@@ -162,7 +162,7 @@ func TestMain(m *testing.M) {
 
 func testEchoTCP(t *testing.T, address string, port int) {
 	path := "aaaaa"
-	res, err := http.Get("http://" + address + ":" + fmt.Sprintf("%d", port) + "/" + path)
+	res, err := http.Get("http://" + address + ":" + strconv.Itoa(port) + "/" + path)
 	if err != nil {
 		t.Fatalf("error connecting to server: %v", err)
 	}

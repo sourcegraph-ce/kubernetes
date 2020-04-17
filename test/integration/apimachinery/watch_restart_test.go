@@ -126,7 +126,7 @@ func TestWatchRestartsIfTimeoutNotReached(t *testing.T) {
 					t.Fatalf("Failed to patch secret: %v", err)
 				}
 
-				*referenceOutput = append(*referenceOutput, fmt.Sprintf("%d", counter))
+				*referenceOutput = append(*referenceOutput, strconv.Itoa(counter))
 			case <-endChannel:
 				return
 			case <-stopChan:

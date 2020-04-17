@@ -280,7 +280,7 @@ func TestRoundTrip(t *testing.T) {
 	}
 
 	for i := range testCases {
-		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			doRoundTrip(t, testCases[i].obj)
 		})
 	}

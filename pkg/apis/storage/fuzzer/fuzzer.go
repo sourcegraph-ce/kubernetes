@@ -47,7 +47,7 @@ var Funcs = func(codecs runtimeserializer.CodecFactory) []interface{} {
 			case 2:
 				// Invalid mode.
 				obj.Spec.VolumeLifecycleModes = []storage.VolumeLifecycleMode{
-					storage.VolumeLifecycleMode(fmt.Sprintf("%d", c.Rand.Int31())),
+					storage.VolumeLifecycleMode(strconv.Itoa(c.Rand.Int31())),
 				}
 			case 3:
 				obj.Spec.VolumeLifecycleModes = []storage.VolumeLifecycleMode{

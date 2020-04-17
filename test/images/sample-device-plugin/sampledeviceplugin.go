@@ -84,7 +84,7 @@ func main() {
 		klog.Errorf("Empty pluginSocksDir")
 		return
 	}
-	socketPath := pluginSocksDir + "/dp." + fmt.Sprintf("%d", time.Now().Unix())
+	socketPath := pluginSocksDir + "/dp." + strconv.Itoa(time.Now().Unix())
 
 	dp1 := dm.NewDevicePluginStub(devs, socketPath, resourceName, false)
 	if err := dp1.Start(); err != nil {

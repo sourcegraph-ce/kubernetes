@@ -43,7 +43,7 @@ var _ = framework.KubeDescribe("SystemNodeCriticalPod [Slow] [Serial] [Disruptiv
 			diskConsumed := resource.MustParse("200Mi")
 			summary := eventuallyGetSummary()
 			availableBytes := *(summary.Node.Fs.AvailableBytes)
-			initialConfig.EvictionHard = map[string]string{string(evictionapi.SignalNodeFsAvailable): fmt.Sprintf("%d", availableBytes-uint64(diskConsumed.Value()))}
+			initialConfig.EvictionHard = map[string]string{string(evictionapi.SignalNodeFsAvailable): strconv.Itoa(availableBytes - uint64(diskConsumed.Value()))}
 			initialConfig.EvictionMinimumReclaim = map[string]string{}
 		})
 

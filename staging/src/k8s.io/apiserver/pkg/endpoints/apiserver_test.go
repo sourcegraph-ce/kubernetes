@@ -1998,7 +1998,7 @@ func TestGetTable(t *testing.T) {
 		},
 	}
 	for i, test := range tests {
-		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			storage := map[string]rest.Storage{}
 			simpleStorage := SimpleRESTStorage{
 				item: obj,
@@ -2208,7 +2208,7 @@ func TestWatchTable(t *testing.T) {
 		},
 	}
 	for i, test := range tests {
-		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			storage := map[string]rest.Storage{}
 			simpleStorage := SimpleRESTStorage{
 				item: obj,

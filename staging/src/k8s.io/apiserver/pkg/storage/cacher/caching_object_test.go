@@ -125,7 +125,7 @@ func TestCachingObjectRaces(t *testing.T) {
 
 	encoders := []*mockEncoder{}
 	for i := 0; i < 10; i++ {
-		encoder := newMockEncoder(fmt.Sprintf("%d", i), "result", nil)
+		encoder := newMockEncoder(strconv.Itoa(i), "result", nil)
 		encoders = append(encoders, encoder)
 	}
 

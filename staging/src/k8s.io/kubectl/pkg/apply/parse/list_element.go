@@ -76,7 +76,7 @@ func (v ElementBuildingVisitor) doPrimitiveList(meta apply.FieldMetaImpl, item *
 			s = item.Array.SubType
 		}
 
-		subitem, err := v.getItem(s, fmt.Sprintf("%d", i), l.RawElementData)
+		subitem, err := v.getItem(s, strconv.Itoa(i), l.RawElementData)
 
 		if err != nil {
 			return nil, err
@@ -132,7 +132,7 @@ func (v ElementBuildingVisitor) doMapList(meta apply.FieldMetaImpl, item *listIt
 		if item.Array != nil && item.Array.SubType != nil {
 			s = item.Array.SubType
 		}
-		subitem, err := v.getItem(s, fmt.Sprintf("%d", i), l.RawElementData)
+		subitem, err := v.getItem(s, strconv.Itoa(i), l.RawElementData)
 		if err != nil {
 			return nil, err
 		}
@@ -180,7 +180,7 @@ func (v ElementBuildingVisitor) replaceListElement(meta apply.FieldMetaImpl, ite
 		if item.Array != nil && item.Array.SubType != nil {
 			s = item.Array.SubType
 		}
-		subitem, err := v.getItem(s, fmt.Sprintf("%d", i), data)
+		subitem, err := v.getItem(s, strconv.Itoa(i), data)
 		if err != nil {
 			return nil, err
 		}

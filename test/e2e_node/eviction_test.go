@@ -78,7 +78,7 @@ var _ = framework.KubeDescribe("InodeEviction [Slow] [Serial] [Disruptive][NodeF
 			if inodesFree <= inodesConsumed {
 				framework.Skipf("Too few inodes free on the host for the InodeEviction test to run")
 			}
-			initialConfig.EvictionHard = map[string]string{string(evictionapi.SignalNodeFsInodesFree): fmt.Sprintf("%d", inodesFree-inodesConsumed)}
+			initialConfig.EvictionHard = map[string]string{string(evictionapi.SignalNodeFsInodesFree): strconv.Itoa(inodesFree - inodesConsumed)}
 			initialConfig.EvictionMinimumReclaim = map[string]string{}
 		})
 		runEvictionTest(f, pressureTimeout, expectedNodeCondition, expectedStarvedResource, logInodeMetrics, []podEvictSpec{
@@ -114,7 +114,7 @@ var _ = framework.KubeDescribe("ImageGCNoEviction [Slow] [Serial] [Disruptive][N
 			if inodesFree <= inodesConsumed {
 				framework.Skipf("Too few inodes free on the host for the InodeEviction test to run")
 			}
-			initialConfig.EvictionHard = map[string]string{string(evictionapi.SignalNodeFsInodesFree): fmt.Sprintf("%d", inodesFree-inodesConsumed)}
+			initialConfig.EvictionHard = map[string]string{string(evictionapi.SignalNodeFsInodesFree): strconv.Itoa(inodesFree - inodesConsumed)}
 			initialConfig.EvictionMinimumReclaim = map[string]string{}
 		})
 		// Consume enough inodes to induce disk pressure,
@@ -173,7 +173,7 @@ var _ = framework.KubeDescribe("LocalStorageEviction [Slow] [Serial] [Disruptive
 			diskConsumed := resource.MustParse("200Mi")
 			summary := eventuallyGetSummary()
 			availableBytes := *(summary.Node.Fs.AvailableBytes)
-			initialConfig.EvictionHard = map[string]string{string(evictionapi.SignalNodeFsAvailable): fmt.Sprintf("%d", availableBytes-uint64(diskConsumed.Value()))}
+			initialConfig.EvictionHard = map[string]string{string(evictionapi.SignalNodeFsAvailable): strconv.Itoa(availableBytes - uint64(diskConsumed.Value()))}
 			initialConfig.EvictionMinimumReclaim = map[string]string{}
 		})
 		runEvictionTest(f, pressureTimeout, expectedNodeCondition, expectedStarvedResource, logDiskMetrics, []podEvictSpec{
@@ -205,7 +205,7 @@ var _ = framework.KubeDescribe("LocalStorageSoftEviction [Slow] [Serial] [Disrup
 			if availableBytes <= uint64(diskConsumed.Value()) {
 				framework.Skipf("Too little disk free on the host for the LocalStorageSoftEviction test to run")
 			}
-			initialConfig.EvictionSoft = map[string]string{string(evictionapi.SignalNodeFsAvailable): fmt.Sprintf("%d", availableBytes-uint64(diskConsumed.Value()))}
+			initialConfig.EvictionSoft = map[string]string{string(evictionapi.SignalNodeFsAvailable): strconv.Itoa(availableBytes - uint64(diskConsumed.Value()))}
 			initialConfig.EvictionSoftGracePeriod = map[string]string{string(evictionapi.SignalNodeFsAvailable): "1m"}
 			// Defer to the pod default grace period
 			initialConfig.EvictionMaxPodGracePeriod = 30
@@ -297,7 +297,7 @@ var _ = framework.KubeDescribe("PriorityMemoryEvictionOrdering [Slow] [Serial] [
 			if availableBytes <= uint64(memoryConsumed.Value()) {
 				framework.Skipf("Too little memory free on the host for the PriorityMemoryEvictionOrdering test to run")
 			}
-			initialConfig.EvictionHard = map[string]string{string(evictionapi.SignalMemoryAvailable): fmt.Sprintf("%d", availableBytes-uint64(memoryConsumed.Value()))}
+			initialConfig.EvictionHard = map[string]string{string(evictionapi.SignalMemoryAvailable): strconv.Itoa(availableBytes - uint64(memoryConsumed.Value()))}
 			initialConfig.EvictionMinimumReclaim = map[string]string{}
 		})
 		ginkgo.BeforeEach(func() {
@@ -354,7 +354,7 @@ var _ = framework.KubeDescribe("PriorityLocalStorageEvictionOrdering [Slow] [Ser
 			if availableBytes <= uint64(diskConsumed.Value()) {
 				framework.Skipf("Too little disk free on the host for the PriorityLocalStorageEvictionOrdering test to run")
 			}
-			initialConfig.EvictionHard = map[string]string{string(evictionapi.SignalNodeFsAvailable): fmt.Sprintf("%d", availableBytes-uint64(diskConsumed.Value()))}
+			initialConfig.EvictionHard = map[string]string{string(evictionapi.SignalNodeFsAvailable): strconv.Itoa(availableBytes - uint64(diskConsumed.Value()))}
 			initialConfig.EvictionMinimumReclaim = map[string]string{}
 		})
 		ginkgo.BeforeEach(func() {
@@ -407,7 +407,7 @@ var _ = framework.KubeDescribe("PriorityPidEvictionOrdering [Slow] [Serial] [Dis
 			pidsConsumed := int64(10000)
 			summary := eventuallyGetSummary()
 			availablePids := *(summary.Node.Rlimit.MaxPID) - *(summary.Node.Rlimit.NumOfRunningProcesses)
-			initialConfig.EvictionHard = map[string]string{string(evictionapi.SignalPIDAvailable): fmt.Sprintf("%d", availablePids-pidsConsumed)}
+			initialConfig.EvictionHard = map[string]string{string(evictionapi.SignalPIDAvailable): strconv.Itoa(availablePids - pidsConsumed)}
 			initialConfig.EvictionMinimumReclaim = map[string]string{}
 		})
 		ginkgo.BeforeEach(func() {

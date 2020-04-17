@@ -54,7 +54,7 @@ func oldRc(replicas int, original int) *corev1.ReplicationController {
 			Name:      "foo-v1",
 			UID:       "7764ae47-9092-11e4-8393-42010af018ff",
 			Annotations: map[string]string{
-				originalReplicasAnnotation: fmt.Sprintf("%d", original),
+				originalReplicasAnnotation: strconv.Itoa(original),
 			},
 		},
 		Spec: corev1.ReplicationControllerSpec{
@@ -86,7 +86,7 @@ func newRc(replicas int, desired int) *corev1.ReplicationController {
 		Namespace: metav1.NamespaceDefault,
 		Name:      "foo-v2",
 		Annotations: map[string]string{
-			desiredReplicasAnnotation: fmt.Sprintf("%d", desired),
+			desiredReplicasAnnotation: strconv.Itoa(desired),
 			sourceIDAnnotation:        "foo-v1:7764ae47-9092-11e4-8393-42010af018ff",
 		},
 	}

@@ -588,7 +588,7 @@ func (util *RBDUtil) CreateImage(p *rbdVolumeProvisioner) (r *v1.RBDPersistentVo
 	if err != nil {
 		return nil, 0, err
 	}
-	volSz := fmt.Sprintf("%d", sz)
+	volSz := strconv.Itoa(sz)
 	mon := util.kernelRBDMonitorsOpt(p.Mon)
 	if p.rbdMounter.imageFormat == rbdImageFormat2 {
 		klog.V(4).Infof("rbd: create %s size %s format %s (features: %s) using mon %s, pool %s id %s key %s", p.rbdMounter.Image, volSz, p.rbdMounter.imageFormat, p.rbdMounter.imageFeatures, mon, p.rbdMounter.Pool, p.rbdMounter.adminId, p.rbdMounter.adminSecret)
@@ -646,7 +646,7 @@ func (util *RBDUtil) ExpandImage(rbdExpander *rbdVolumeExpander, oldSize resourc
 
 	// Convert to MB that rbd defaults on.
 	sz := int(volumehelpers.RoundUpToMiB(newSize))
-	newVolSz := fmt.Sprintf("%d", sz)
+	newVolSz := strconv.Itoa(sz)
 	newSizeQuant := resource.MustParse(fmt.Sprintf("%dMi", sz))
 
 	// Check the current size of rbd image, if equals to or greater that the new request size, do nothing.

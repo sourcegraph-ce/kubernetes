@@ -106,12 +106,12 @@ func ResolveCluster(services listersv1.ServiceLister, namespace, id string, port
 		}
 		return &url.URL{
 			Scheme: "https",
-			Host:   net.JoinHostPort(svc.Spec.ClusterIP, fmt.Sprintf("%d", svcPort.Port)),
+			Host:   net.JoinHostPort(svc.Spec.ClusterIP, strconv.Itoa(svcPort.Port)),
 		}, nil
 	case svc.Spec.Type == v1.ServiceTypeExternalName:
 		return &url.URL{
 			Scheme: "https",
-			Host:   net.JoinHostPort(svc.Spec.ExternalName, fmt.Sprintf("%d", port)),
+			Host:   net.JoinHostPort(svc.Spec.ExternalName, strconv.Itoa(port)),
 		}, nil
 	default:
 		return nil, fmt.Errorf("unsupported service type %q", svc.Spec.Type)

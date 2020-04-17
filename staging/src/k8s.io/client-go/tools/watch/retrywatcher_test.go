@@ -68,7 +68,7 @@ func makeTestEvent(rv int) watch.Event {
 	return watch.Event{
 		Type: watch.Added,
 		Object: testObject{
-			resourceVersion: fmt.Sprintf("%d", rv),
+			resourceVersion: strconv.Itoa(rv),
 		},
 	}
 }

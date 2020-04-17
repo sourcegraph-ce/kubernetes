@@ -69,7 +69,7 @@ func DiskUsage(path string) (*resource.Quantity, error) {
 		return nil, err
 	}
 
-	used, err := resource.ParseQuantity(fmt.Sprintf("%d", usage))
+	used, err := resource.ParseQuantity(strconv.Itoa(usage))
 	if err != nil {
 		return nil, fmt.Errorf("failed to parse fs usage %d due to %v", usage, err)
 	}

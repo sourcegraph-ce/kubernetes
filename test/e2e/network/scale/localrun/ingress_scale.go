@@ -51,7 +51,7 @@ var (
 type numIngressesSlice []int
 
 func (i *numIngressesSlice) String() string {
-	return fmt.Sprintf("%d", *i)
+	return strconv.Itoa(*i)
 }
 
 func (i *numIngressesSlice) Set(value string) error {

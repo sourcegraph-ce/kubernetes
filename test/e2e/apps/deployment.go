@@ -549,7 +549,7 @@ func testIterativeDeployments(f *framework.Framework) {
 			// trigger a new deployment
 			framework.Logf("%02d: triggering a new rollout for deployment %q", i, deployment.Name)
 			deployment, err = e2edeploy.UpdateDeploymentWithRetries(c, ns, deployment.Name, func(update *appsv1.Deployment) {
-				newEnv := v1.EnvVar{Name: "A", Value: fmt.Sprintf("%d", i)}
+				newEnv := v1.EnvVar{Name: "A", Value: strconv.Itoa(i)}
 				update.Spec.Template.Spec.Containers[0].Env = append(update.Spec.Template.Spec.Containers[0].Env, newEnv)
 				randomScale(update, i)
 			})
@@ -942,7 +942,7 @@ func testRollingUpdateDeploymentWithLocalTrafficLoadBalancer(f *framework.Framew
 	for i := 1; i <= 3; i++ {
 		framework.Logf("Updating label deployment %q pod spec (iteration #%d)", name, i)
 		deployment, err = e2edeploy.UpdateDeploymentWithRetries(c, ns, d.Name, func(update *appsv1.Deployment) {
-			update.Spec.Template.Labels["iteration"] = fmt.Sprintf("%d", i)
+			update.Spec.Template.Labels["iteration"] = strconv.Itoa(i)
 			setAffinities(update, true)
 		})
 		framework.ExpectNoError(err)

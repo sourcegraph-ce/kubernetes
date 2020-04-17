@@ -240,7 +240,7 @@ func (h *hostportSyncer) SyncHostports(natInterfaceName string, activePodPortMap
 			"-A", string(kubeHostportsChain),
 			"-m", "comment", "--comment", fmt.Sprintf(`"%s hostport %d"`, target.podFullName, port.HostPort),
 			"-m", protocol, "-p", protocol,
-			"--dport", fmt.Sprintf("%d", port.HostPort),
+			"--dport", strconv.Itoa(port.HostPort),
 			"-j", string(hostportChain),
 		}
 		writeLine(natRules, args...)

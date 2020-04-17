@@ -64,7 +64,7 @@ func newMockClientForTest(namespaces map[string]v1.NamespacePhase) *fake.Clients
 	mockClient.AddReactor("list", "namespaces", func(action core.Action) (bool, runtime.Object, error) {
 		namespaceList := &v1.NamespaceList{
 			ListMeta: metav1.ListMeta{
-				ResourceVersion: fmt.Sprintf("%d", len(namespaces)),
+				ResourceVersion: strconv.Itoa(len(namespaces)),
 			},
 		}
 		index := 0
@@ -72,7 +72,7 @@ func newMockClientForTest(namespaces map[string]v1.NamespacePhase) *fake.Clients
 			namespaceList.Items = append(namespaceList.Items, v1.Namespace{
 				ObjectMeta: metav1.ObjectMeta{
 					Name:            name,
-					ResourceVersion: fmt.Sprintf("%d", index),
+					ResourceVersion: strconv.Itoa(index),
 				},
 				Status: v1.NamespaceStatus{
 					Phase: phase,

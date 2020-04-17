@@ -406,7 +406,7 @@ func TestWatcherNotGoingBackInTime(t *testing.T) {
 			ObjectMeta: metav1.ObjectMeta{
 				Name:            fmt.Sprintf("pod-%d", 1000+i),
 				Namespace:       "ns",
-				ResourceVersion: fmt.Sprintf("%d", 1000+i),
+				ResourceVersion: strconv.Itoa(1000+i),
 			},
 		}
 	}
@@ -839,7 +839,7 @@ func TestDispatchEventWillNotBeBlockedByTimedOutWatcher(t *testing.T) {
 			ObjectMeta: metav1.ObjectMeta{
 				Name:            fmt.Sprintf("pod-%d", 1000+i),
 				Namespace:       "ns",
-				ResourceVersion: fmt.Sprintf("%d", 1000+i),
+				ResourceVersion: strconv.Itoa(1000+i),
 			},
 		}
 	}

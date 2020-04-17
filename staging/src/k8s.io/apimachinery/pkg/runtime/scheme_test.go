@@ -838,7 +838,7 @@ func TestConvertToVersion(t *testing.T) {
 		},
 	}
 	for i, test := range testCases {
-		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			original := test.in.DeepCopyObject()
 			out, err := test.scheme.ConvertToVersion(test.in, test.gv)
 			switch {
@@ -903,7 +903,7 @@ func TestConvert(t *testing.T) {
 		},
 	}
 	for i, test := range testCases {
-		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			err := test.scheme.Convert(test.in, test.into, test.gv)
 			switch {
 			case test.errFn != nil:

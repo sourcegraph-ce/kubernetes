@@ -60,7 +60,7 @@ func ServeExec(w http.ResponseWriter, req *http.Request, executor Executor, podN
 					Causes: []metav1.StatusCause{
 						{
 							Type:    remotecommandconsts.ExitCodeCauseType,
-							Message: fmt.Sprintf("%d", rc),
+							Message: strconv.Itoa(rc),
 						},
 					},
 				},

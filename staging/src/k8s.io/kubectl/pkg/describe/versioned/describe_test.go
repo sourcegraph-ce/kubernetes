@@ -842,7 +842,7 @@ func TestDescribeContainers(t *testing.T) {
 	}
 
 	for i, testCase := range testCases {
-		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			out := new(bytes.Buffer)
 			pod := corev1.Pod{
 				Spec: corev1.PodSpec{
@@ -2732,7 +2732,7 @@ func TestPrintLabelsMultiline(t *testing.T) {
 		},
 	}
 	for i, testCase := range testCases {
-		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			out := new(bytes.Buffer)
 			writer := NewPrefixWriter(out)
 			printAnnotationsMultiline(writer, "Annotations", testCase.annotations)

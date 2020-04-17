@@ -53,14 +53,14 @@ func newMockClientForTest(namespaces []string) *fake.Clientset {
 	mockClient.AddReactor("list", "namespaces", func(action core.Action) (bool, runtime.Object, error) {
 		namespaceList := &corev1.NamespaceList{
 			ListMeta: metav1.ListMeta{
-				ResourceVersion: fmt.Sprintf("%d", len(namespaces)),
+				ResourceVersion: strconv.Itoa(len(namespaces)),
 			},
 		}
 		for i, ns := range namespaces {
 			namespaceList.Items = append(namespaceList.Items, corev1.Namespace{
 				ObjectMeta: metav1.ObjectMeta{
 					Name:            ns,
-					ResourceVersion: fmt.Sprintf("%d", i),
+					ResourceVersion: strconv.Itoa(i),
 				},
 			})
 		}

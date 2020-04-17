@@ -685,7 +685,7 @@ func TestResolveFenceposts(t *testing.T) {
 	}
 
 	for num, test := range tests {
-		t.Run(fmt.Sprintf("%d", num), func(t *testing.T) {
+		t.Run(strconv.Itoa(num), func(t *testing.T) {
 			var maxSurge, maxUnavail *intstr.IntOrString
 			if test.maxSurge != nil {
 				surge := intstr.FromString(*test.maxSurge)
@@ -1277,7 +1277,7 @@ func TestAnnotationUtils(t *testing.T) {
 		//Try to set the increment revision from 11 through 20
 		for i := 10; i < 20; i++ {
 
-			nextRevision := fmt.Sprintf("%d", i+1)
+			nextRevision := strconv.Itoa(i + 1)
 			SetNewReplicaSetAnnotations(&tDeployment, &tRS, nextRevision, true, 5)
 			//Now the ReplicaSets Revision Annotation should be i+1
 
@@ -1331,8 +1331,8 @@ func TestAnnotationUtils(t *testing.T) {
 
 func TestReplicasAnnotationsNeedUpdate(t *testing.T) {
 
-	desiredReplicas := fmt.Sprintf("%d", int32(10))
-	maxReplicas := fmt.Sprintf("%d", int32(20))
+	desiredReplicas := strconv.Itoa(int32(10))
+	maxReplicas := strconv.Itoa(int32(20))
 
 	tests := []struct {
 		name       string

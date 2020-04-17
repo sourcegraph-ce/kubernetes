@@ -1098,7 +1098,7 @@ func iptablesCommonPortalArgs(destIP net.IP, addPhysicalInterfaceMatch bool, add
 		"--comment", service.String(),
 		"-p", strings.ToLower(string(protocol)),
 		"-m", strings.ToLower(string(protocol)),
-		"--dport", fmt.Sprintf("%d", destPort),
+		"--dport", strconv.Itoa(destPort),
 	}
 
 	if destIP != nil {
@@ -1155,7 +1155,7 @@ func (proxier *Proxier) iptablesContainerPortalArgs(destIP net.IP, addPhysicalIn
 	// allowed.
 	if proxyIP.Equal(zeroIPv4) || proxyIP.Equal(zeroIPv6) {
 		// TODO: Can we REDIRECT with IPv6?
-		args = append(args, "-j", "REDIRECT", "--to-ports", fmt.Sprintf("%d", proxyPort))
+		args = append(args, "-j", "REDIRECT", "--to-ports", strconv.Itoa(proxyPort))
 	} else {
 		// TODO: Can we DNAT with IPv6?
 		args = append(args, "-j", "DNAT", "--to-destination", net.JoinHostPort(proxyIP.String(), strconv.Itoa(proxyPort)))

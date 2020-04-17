@@ -70,7 +70,7 @@ func TestDiskUsage(t *testing.T) {
 	if err != nil {
 		t.Fatalf("TestDiskUsage failed: %s", err.Error())
 	}
-	used, err := resource.ParseQuantity(fmt.Sprintf("%d", total))
+	used, err := resource.ParseQuantity(strconv.Itoa(total))
 	if err != nil {
 		t.Fatalf("TestDiskUsage failed: %s", err.Error())
 	}
